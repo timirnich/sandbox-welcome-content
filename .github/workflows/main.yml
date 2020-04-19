@@ -28,9 +28,17 @@ jobs:
           cf_password: ${{ secrets.CF_PASSWORD }}
           cf_org: ${{ secrets.CF_ORG }}
           cf_space: ${{ secrets.CF_SPACE }}
-          command: |
-            push gettingstarted-tim-blue
-            cf map-route gettingstarted-tim-blue cap.explore.suse.dev --hostname gettingstarted-tim 
+          command: push gettingstarted-tim-blue
+      - name: map route to blue
+      - uses: citizen-of-planet-earth/cf-cli-action@master
+        if: env.DEDPLOY_TO == 'blue'
+        with:
+          cf_api: ${{ secrets.CF_API }}
+          cf_username: ${{ secrets.CF_USER }}
+          cf_password: ${{ secrets.CF_PASSWORD }}
+          cf_org: ${{ secrets.CF_ORG }}
+          cf_space: ${{ secrets.CF_SPACE }}
+          command: cf map-route gettingstarted-tim-blue cap.explore.suse.dev --hostname gettingstarted-tim 
       - name: deploy green
       - uses: citizen-of-planet-earth/cf-cli-action@master
         if: env.DEPLOY_TO == 'green'
@@ -40,6 +48,14 @@ jobs:
           cf_password: ${{ secrets.CF_PASSWORD }}
           cf_org: ${{ secrets.CF_ORG }}
           cf_space: ${{ secrets.CF_SPACE }}
-          command: |
-            push gettingstarted-tim-green
-            cf map-route gettingstarted-tim-green cap.explore.suse.dev --hostname gettingstarted-tim 
+          command: push gettingstarted-tim-green
+      - name: map route to green
+      - uses: citizen-of-planet-earth/cf-cli-action@master
+        if: env.DEPLOY_TO == 'green'
+        with:
+          cf_api: ${{ secrets.CF_API }}
+          cf_username: ${{ secrets.CF_USER }}
+          cf_password: ${{ secrets.CF_PASSWORD }}
+          cf_org: ${{ secrets.CF_ORG }}
+          cf_space: ${{ secrets.CF_SPACE }}
+          command: cf map-route gettingstarted-tim-green cap.explore.suse.dev --hostname gettingstarted-tim 

@@ -12,10 +12,8 @@ jobs:
   # This workflow contains a single job called "deploy"
   deploy:
     runs-on: ubuntu-18.04
-    
     env:
       DEPLOY_TO: blue
-
     steps:
       - name: check out the repo
       - uses: actions/checkout@v2

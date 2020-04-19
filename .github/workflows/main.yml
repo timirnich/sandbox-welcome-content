@@ -16,9 +16,9 @@ jobs:
       DEPLOY_TO: blue
     steps:
       - name: check out the repo
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
       - name: deploy blue
-      - uses: citizen-of-planet-earth/cf-cli-action@master
+        uses: citizen-of-planet-earth/cf-cli-action@master
         if: env.DEDPLOY_TO == 'blue'
         with:
           cf_api: ${{ secrets.CF_API }}
@@ -28,7 +28,7 @@ jobs:
           cf_space: ${{ secrets.CF_SPACE }}
           command: push gettingstarted-tim-blue
       - name: map route to blue
-      - uses: citizen-of-planet-earth/cf-cli-action@master
+        uses: citizen-of-planet-earth/cf-cli-action@master
         if: env.DEDPLOY_TO == 'blue'
         with:
           cf_api: ${{ secrets.CF_API }}
@@ -38,7 +38,7 @@ jobs:
           cf_space: ${{ secrets.CF_SPACE }}
           command: cf map-route gettingstarted-tim-blue cap.explore.suse.dev --hostname gettingstarted-tim 
       - name: deploy green
-      - uses: citizen-of-planet-earth/cf-cli-action@master
+        uses: citizen-of-planet-earth/cf-cli-action@master
         if: env.DEPLOY_TO == 'green'
         with:
           cf_api: ${{ secrets.CF_API }}
@@ -48,7 +48,7 @@ jobs:
           cf_space: ${{ secrets.CF_SPACE }}
           command: push gettingstarted-tim-green
       - name: map route to green
-      - uses: citizen-of-planet-earth/cf-cli-action@master
+        uses: citizen-of-planet-earth/cf-cli-action@master
         if: env.DEPLOY_TO == 'green'
         with:
           cf_api: ${{ secrets.CF_API }}

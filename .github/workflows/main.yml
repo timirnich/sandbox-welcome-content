@@ -36,7 +36,7 @@ jobs:
           cf_password: ${{ secrets.CF_PASSWORD }}
           cf_org: ${{ secrets.CF_ORG }}
           cf_space: ${{ secrets.CF_SPACE }}
-          command: cf map-route gettingstarted-tim-blue cap.explore.suse.dev --hostname gettingstarted-tim 
+          command: map-route gettingstarted-tim-blue cap.explore.suse.dev --hostname gettingstarted-tim 
       - name: deploy green
         uses: citizen-of-planet-earth/cf-cli-action@master
 #        if: env.DEPLOY_TO == 'green'
@@ -56,4 +56,4 @@ jobs:
           cf_password: ${{ secrets.CF_PASSWORD }}
           cf_org: ${{ secrets.CF_ORG }}
           cf_space: ${{ secrets.CF_SPACE }}
-          command: cf map-route gettingstarted-tim-green cap.explore.suse.dev --hostname gettingstarted-tim 
+          command: map-route gettingstarted-tim-green cap.explore.suse.dev --hostname gettingstarted-tim 

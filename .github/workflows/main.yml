@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v2
       - name: deploy blue
         uses: citizen-of-planet-earth/cf-cli-action@master
-        if: env.DEDPLOY_TO == 'blue'
+        if: env.DEPLOY_TO == 'blue'
         with:
           cf_api: ${{ secrets.CF_API }}
           cf_username: ${{ secrets.CF_USER }}
@@ -31,7 +31,7 @@ jobs:
           command: push gettingstarted-tim-blue
       - name: map route to blue
         uses: citizen-of-planet-earth/cf-cli-action@master
-        if: env.DEDPLOY_TO == 'blue'
+        if: env.DEPLOY_TO == 'blue'
         with:
           cf_api: ${{ secrets.CF_API }}
           cf_username: ${{ secrets.CF_USER }}
@@ -51,7 +51,7 @@ jobs:
           command: unmap-route gettingstarted-tim-green cap.explore.suse.dev --hostname gettingstarted-tim 
       - name: deploy green
         uses: citizen-of-planet-earth/cf-cli-action@master
-#        if: env.DEPLOY_TO == 'green'
+        if: env.DEPLOY_TO == 'green'
         with:
           cf_api: ${{ secrets.CF_API }}
           cf_username: ${{ secrets.CF_USER }}
@@ -61,7 +61,7 @@ jobs:
           command: push gettingstarted-tim-green
       - name: map route to green
         uses: citizen-of-planet-earth/cf-cli-action@master
-#        if: env.DEPLOY_TO == 'green'
+        if: env.DEPLOY_TO == 'green'
         with:
           cf_api: ${{ secrets.CF_API }}
           cf_username: ${{ secrets.CF_USER }}
@@ -71,7 +71,7 @@ jobs:
           command: map-route gettingstarted-tim-green cap.explore.suse.dev --hostname gettingstarted-tim 
       - name: unmap blue route
         uses: citizen-of-planet-earth/cf-cli-action@master
-#        if: env.DEPLOY_TO == 'green'
+        if: env.DEPLOY_TO == 'green'
         with:
           cf_api: ${{ secrets.CF_API }}
           cf_username: ${{ secrets.CF_USER }}

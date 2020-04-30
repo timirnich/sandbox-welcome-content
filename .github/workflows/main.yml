@@ -13,7 +13,7 @@ jobs:
   deploy:
     runs-on: ubuntu-18.04
     env:
-      DEPLOY_TO: ${{ 'blue' }}
+      DEPLOY_TO: ${{ 'green' }}
     steps:
 #      - name: print deploy target to log
 #        run: echo "$DEPLOY_TO"

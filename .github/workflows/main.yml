@@ -17,8 +17,10 @@ jobs:
     steps:
 #      - name: print deploy target to log
 #        run: echo "$DEPLOY_TO"
+      - name: Install python
       - uses: actions/setup-python@v1
-        run: python 'import random; TARGET = random.choice(['blue', 'green'])'
+      - name: Toss a coin 
+      - run: python 'import random; TARGET = random.choice(['blue', 'green'])'
       - name: print deploy target to log
         run: echo "$TARGET"
       - name: check out the repo

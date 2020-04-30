@@ -15,8 +15,8 @@ jobs:
     env:
       DEPLOY_TO: ${{ 'blue' }}
     steps:
-      - name: print deploy target to log
-        run: echo "$DEPLOY_TO"
+#      - name: print deploy target to log
+#        run: echo "$DEPLOY_TO"
       - name: check out the repo
         uses: actions/checkout@v2
       - name: deploy blue

@@ -17,14 +17,14 @@ jobs:
     steps:
 #      - name: print deploy target to log
 #        run: echo "$DEPLOY_TO"
+      - name: check out the repo
+        uses: actions/checkout@v2
       - name: Install python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
       - name: Toss a coin 
         run: python "import random; TARGET = random.choice(['blue', 'green'])"
       - name: print deploy target to log
         run: echo "$TARGET"
-      - name: check out the repo
-        uses: actions/checkout@v2
       - name: deploy blue
         uses: citizen-of-planet-earth/cf-cli-action@master
         if: env.DEPLOY_TO == 'blue'

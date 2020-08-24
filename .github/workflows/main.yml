@@ -23,11 +23,9 @@ jobs:
         uses: actions/setup-python@v2
       - name: Toss a coin 
         run: python -c "import os; import random; os.environ["TARGET"] = random.choice(['blue', 'green'])"
-      - name: print deploy target to log
-        run: echo $TARGET
       - name: deploy blue
         uses: citizen-of-planet-earth/cf-cli-action@master
-        if: env.DEPLOY_TO == 'blue'
+        if: env.TARGET == 'blue'
         with:
           cf_api: ${{ secrets.CF_API }}
           cf_username: ${{ secrets.CF_USER }}
@@ -37,7 +35,7 @@ jobs:
           command: push gettingstarted-tim-blue
       - name: map route to blue
         uses: citizen-of-planet-earth/cf-cli-action@master
-        if: env.DEPLOY_TO == 'blue'
+        if: env.TARGET == 'blue'
         with:
           cf_api: ${{ secrets.CF_API }}
           cf_username: ${{ secrets.CF_USER }}
@@ -47,7 +45,7 @@ jobs:
           command: map-route gettingstarted-tim-blue cap.explore.suse.dev --hostname gettingstarted-tim 
       - name: unmap green route
         uses: citizen-of-planet-earth/cf-cli-action@master
-        if: env.DEPLOY_TO == 'blue'
+        if: env.TARGET == 'blue'
         with:
           cf_api: ${{ secrets.CF_API }}
           cf_username: ${{ secrets.CF_USER }}
@@ -57,7 +55,7 @@ jobs:
           command: unmap-route gettingstarted-tim-green cap.explore.suse.dev --hostname gettingstarted-tim 
       - name: deploy green
         uses: citizen-of-planet-earth/cf-cli-action@master
-        if: env.DEPLOY_TO == 'green'
+        if: env.TARGET == 'green'
         with:
           cf_api: ${{ secrets.CF_API }}
           cf_username: ${{ secrets.CF_USER }}
@@ -67,7 +65,7 @@ jobs:
           command: push gettingstarted-tim-green
       - name: map route to green
         uses: citizen-of-planet-earth/cf-cli-action@master
-        if: env.DEPLOY_TO == 'green'
+        if: env.TARGET == 'green'
         with:
           cf_api: ${{ secrets.CF_API }}
           cf_username: ${{ secrets.CF_USER }}
@@ -77,7 +75,7 @@ jobs:
           command: map-route gettingstarted-tim-green cap.explore.suse.dev --hostname gettingstarted-tim 
       - name: unmap blue route
         uses: citizen-of-planet-earth/cf-cli-action@master
-        if: env.DEPLOY_TO == 'green'
+        if: env.TARGET == 'green'
         with:
           cf_api: ${{ secrets.CF_API }}
           cf_username: ${{ secrets.CF_USER }}

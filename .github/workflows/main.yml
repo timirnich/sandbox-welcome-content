@@ -22,9 +22,9 @@ jobs:
       - name: Install python
         uses: actions/setup-python@v2
       - name: Toss a coin 
-        run: python -c "import random; TARGET = random.choice(['blue', 'green'])"
+        run: python -c "import random; os.environ["TARGET"] = random.choice(['blue', 'green'])"
       - name: print deploy target to log
-        run: echo "$TARGET"
+        run: echo $TARGET
       - name: deploy blue
         uses: citizen-of-planet-earth/cf-cli-action@master
         if: env.DEPLOY_TO == 'blue'

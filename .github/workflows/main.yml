@@ -22,7 +22,7 @@ jobs:
       - name: Install python
         uses: actions/setup-python@v2
       - name: Toss a coin 
-        run: python -c "import os; import random; os.environ["TARGET"] = random.choice(['blue', 'green'])"
+        run: python -c "import os; import random; os.environ['TARGET'] = random.choice(['blue', 'green'])"
       - name: deploy blue
         uses: citizen-of-planet-earth/cf-cli-action@master
         if: env.TARGET == 'blue'

@@ -22,7 +22,7 @@ jobs:
       - name: Install python
         uses: actions/setup-python@v2
       - name: Toss a coin 
-        run: echo '::set-env name=TARGET::python -c "import random; random.choice(['blue', 'green'])"'
+        run: echo '::set-env name=TARGET::`python -c "import random; print(random.choice(['blue', 'green']))`"'
       - name: echo TARGET env variable
         run: echo $TARGET
       - name: deploy blue
